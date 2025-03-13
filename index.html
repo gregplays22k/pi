@@ -5,27 +5,75 @@
   <style>
     body {
       font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      background-color: #f0f0f0;
+    }
+
+    #container {
       text-align: center;
-      padding-top: 50px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: white;
+      margin-bottom: 20px;
+    }
+
+    #results {
+      width: 80%;
+      max-width: 600px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: white;
+      overflow-y: auto; /* Enable scroll if results are too long */
+      max-height: 300px;
+    }
+
+    .result-item {
+      margin-bottom: 5px;
     }
   </style>
 </head>
 <body>
-  <h1>PI</h1>
-  <p>PI</p>
+  <div id="container">
+    <h1>PI</h1>
+    <p>E = <span id="eValue">3</span></p>
+    <p>Current Result: <span id="result">12</span></p>
+  </div>
+
+  <div id="results">
+    <h2>Calculation History</h2>
+  </div>
 
   <script>
-    function cpuIntensiveLoop() {
-      let x = 0;
-      while (true) { // Infinite loop
-        x++;
-        // Optional: Add some more complex calculations
-        x = Math.sin(x) * Math.cos(x) * x;
-      }
+    let e = 3;
+    const eValueElement = document.getElementById('eValue');
+    const resultElement = document.getElementById('result');
+    const resultsDiv = document.getElementById('results');
+
+    function calculateAndDisplay() {
+      const result = 2 * 2 * e;
+      eValueElement.textContent = e;
+      resultElement.textContent = result;
+      e = result; // Update e
+
+      // Add the result to the history
+      const resultItem = document.createElement('p');
+      resultItem.classList.add('result-item');
+      resultItem.textContent = `E = ${e / 4}, Result = ${result}`;
+      resultsDiv.appendChild(resultItem);
+
+      // Scroll to bottom of results div
+      resultsDiv.scrollTop = resultsDiv.scrollHeight;
     }
 
-    // Start the loop
-    cpuIntensiveLoop();
+    // Initial calculation
+    calculateAndDisplay();
+
+    // Loop every second
+    setInterval(calculateAndDisplay, 1000);
   </script>
 </body>
 </html>
