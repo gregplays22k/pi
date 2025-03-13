@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2x2xE Multiplier</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    #container {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: white;
+    }
+
+    #result {
+      font-size: 2em;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>2 x 2 x E Multiplier</h1>
+    <p>E = <span id="eValue">3</span></p>
+    <p>Result: <span id="result">12</span></p>
+  </div>
+
+  <script>
+    let e = 3;
+    const eValueElement = document.getElementById('eValue');
+    const resultElement = document.getElementById('result');
+
+    function calculateAndDisplay() {
+      const result = 2 * 2 * e;
+      eValueElement.textContent = e;
+      resultElement.textContent = result;
+      e = result; // Update e
+    }
+
+    // Initial calculation
+    calculateAndDisplay();
+
+    // Loop every second
+    setInterval(calculateAndDisplay, 1000);
+  </script>
+</body>
+</html>
